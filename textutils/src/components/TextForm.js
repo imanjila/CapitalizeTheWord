@@ -15,7 +15,6 @@ export default function TextForm(props) {
           props.showAlert("Converted to lowercase!", "success")
     }
     const handleOnChange = (event ) => {
-        console.log('On Change')
         setText(event.target.value);
     }
     const handleClearClick = (event ) => {
@@ -27,7 +26,7 @@ export default function TextForm(props) {
     const [text, setText] = useState('Enter text here');
 //    text = 'new text'; //wrong way to change the state
 //    setText = ('new text'); //correct way to change the state
-  return (
+  return (              
     <>
     <div className="container" style = {{color: props.mode === 'dark' ? 'white' : 'black'}}>
         <h1 className= 'mb-2'>{props.heading}</h1>
@@ -40,7 +39,7 @@ export default function TextForm(props) {
     </div>
     <div className="container my-3" style = {{color: props.mode === 'dark' ? 'white' : 'black'}}>
       <h2>Your text summary</h2>
-      <p>{text.split(" ").filter((element)=> {return element.length !==0}).length} words and {text.length} characters</p>
+      <p>{text.split(/\s+/).filter((element)=> {return element.length !==0}).length} words and {text.length} characters</p>
       <p>{0.008 * text.split(" ").filter((element)=> {return element.length !==0}).length} Minutes read</p>
       <h2>Preview</h2>
       <p>{text.length > 0 ? text : "Nothing to preview"}</p>
